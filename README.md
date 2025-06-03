@@ -1,19 +1,68 @@
 # Dotfiles
 
-Personal configuration files for i3, i3status, Alacritty, and Neovim.
+Personal configuration files for my development environment, managed with symlinks.
 
 ## Structure
 
-Each tool has its config stored in a `.config/` subdirectory, matching system expectations.
-Symlinks are created manually using a custom script.
+This repository mirrors the structure of `$HOME/.config` and related files. Each tool has its own subfolder:
 
-## Contents
+```
+dotfiles/
+├── alacritty/
+├── i3/
+├── i3status/
+├── nvim/
+├── tmux/
+│   └── .tmux.conf
+├── link-dotfiles.sh
+└── link.conf
+```
 
-- **Neovim**: Lua-based config, plugin manager, modular structure
-- **i3/i3status**: Tiling window manager and status bar configs
-- **Alacritty**: Terminal emulator config in TOML
+## Symlink Management
 
-## Usage
+Dotfiles are symlinked into place using the `link-dotfiles.sh` script.
 
-1. Clone the repository
-2. Run `link-dotfiles.sh` to install configs via symlinks
+### Creating symlinks
+
+```bash
+./link-dotfiles.sh
+```
+
+This reads `link.conf` and creates symlinks from your repo to `$HOME`.
+
+### Dry-run
+
+To preview what the script will do:
+
+```bash
+./link-dotfiles.sh --dry-run
+```
+
+### Optional unlink script
+
+(Coming soon) – to remove symlinks cleanly based on `link.conf`.
+
+## Add/Edit a dotfile
+
+1. Place the config file in the corresponding subfolder in the repo.
+2. Add an entry in `link.conf`, e.g.:
+
+   ```
+   alacritty = ~/.config/alacritty
+   ```
+
+3. Run the script again to apply the change.
+
+## Requirements
+
+- Bash
+- GNU coreutils (`ln`, `xargs`, etc.)
+
+## Security
+
+Sensitive files like `~/.ssh` or `~/.gnupg` are not versioned and should be backed up separately.
+
+## Notes
+
+- Only symlinks are created, no original files are deleted.
+- Existing links are forcefully replaced (`ln -sf`).
