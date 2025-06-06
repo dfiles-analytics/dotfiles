@@ -1,0 +1,6 @@
+alacritty	=	~/.config/alacritty
+i3		=	~/.config/i3
+i3status	=	~/.config/i3status
+nvim		=	~/.config/nvim
+.tmux.conf	=	~/.tmux.conf
+.zshrc		=	~/.zshrc
