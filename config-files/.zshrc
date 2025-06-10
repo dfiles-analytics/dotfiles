@@ -26,7 +26,7 @@ precmd() {
 	if [[ $EUID -eq 0 ]]; then
 		PROMPT="${venv_name}%F{red}%n%f@%m %~${git_branch} # "
 	else
-		PROMPT="${venv_name}%F{blue}%n%f@%m %~${git_branch} ❯ "
+		PROMPT="${venv_name}%F{blue}%n%f@%m %~${git_branch} > "
 	fi
 }
 
@@ -81,5 +81,5 @@ tmux-main() {
 }
 
 # Misc
-alias ll='ls -lh --color=auto'
+alias ll=' ls -alh --group-directories-first'
 alias ls='ls --color=auto'
